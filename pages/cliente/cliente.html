@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../style.css">
+    <script src="../../app.js" defer></script>
+
+    <title>Cadastro do Cliente - AgroBio</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <span class="logo">AgroBio</span>
+            <ul>
+                <li><a href="../../index.html">Início</a></li>
+                <li><a href="../consulta/consulta.html">Carrinho</a></li>
+                <li><a href="./cliente.html">Cadastro Cliente</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="conteudo">
+        <h2>Cadastro do Cliente</h2>
+        <p>Preencha seus dados para entrega dos insumos e emissão de Nota Fiscal.</p>
+
+        <form id="form-cliente" class="form-agrobio">
+            <div class="campo">
+                <label for="cliente-nome">Nome Completo ou Razão Social</label>
+                <input type="text" id="cliente-nome" required placeholder="Ex: João da Silva / Fazenda Boa Esperança">
+            </div>
+
+            <div class="campo-duplo">
+                <div class="campo">
+                    <label for="cliente-documento">CPF ou CNPJ</label>
+                    <input type="text" id="cliente-documento" required placeholder="Ex: 123.456.789-00">
+                </div>
+
+                <div class="campo">
+                    <label for="cliente-telefone">Telefone / WhatsApp</label>
+                    <input type="tel" id="cliente-telefone" required placeholder="Ex: (11) 99999-9999">
+                </div>
+            </div>
+
+            <div class="campo">
+                <label for="cliente-email">E-mail</label>
+                <input type="email" id="cliente-email" required placeholder="Ex: produtor@fazenda.com.br">
+            </div>
+
+            <div class="campo">
+                <label for="cliente-endereco">Endereço de Entrega / Propriedade Rural</label>
+                <input type="text" id="cliente-endereco" required placeholder="Ex: Rodovia SP-300, Km 45 - Zona Rural">
+            </div>
+
+            <div class="campo-duplo">
+                <div class="campo">
+                    <label for="cliente-cidade">Cidade / Estado</label>
+                    <input type="text" id="cliente-cidade" required placeholder="Ex: Ribeirão Preto - SP">
+                </div>
+
+                <div class="campo">
+                    <label for="cliente-cep">CEP</label>
+                    <input type="text" id="cliente-cep" required placeholder="Ex: 14000-000">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-principal">Salvar Dados do Cliente</button>
+            <p id="msg-cliente-sucesso" class="msg-sucesso" hidden>Dados do cliente salvos com sucesso!</p>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 AgroBio - Tecnologia em Sementes e Bioinsumos</p>
+    </footer>
+</body>
+</html>

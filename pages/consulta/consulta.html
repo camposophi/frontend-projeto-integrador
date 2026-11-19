@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../style.css">
+    <script src="../../app.js" defer></script>
+
+    <title>Carrinho - AgroBio</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <span class="logo">AgroBio</span>
+            <ul>
+                <li><a href="../../index.html">Início</a></li>
+                <li><a href="./consulta.html">Carrinho</a></li>
+                <li><a href="../cliente/cliente.html">Cadastro Cliente</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="conteudo">
+        <h2>Carrinho &amp; Catálogo AgroBio</h2>
+        <p>Selecione os produtos desejados abaixo e clique em Finalizar Pedido.</p>
+
+        <!-- Barra de filtros -->
+        <div class="filtros-consulta">
+            <input type="search" id="busca-produto" placeholder="Buscar por nome ou descrição...">
+            <select id="filtro-categoria">
+                <option value="Todas">Todas as Categorias</option>
+                <option value="1">Sementes Modificadas</option>
+                <option value="2">Insumos Biologicos</option>
+            </select>
+        </div>
+
+        <!-- Resumo do Carrinho -->
+        <section class="carrinho-resumo">
+            <div class="carrinho-topo">
+                <h3>Itens Selecionados (<span id="carrinho-qtd">0</span>)</h3>
+                <strong id="carrinho-total">Total: R$ 0,00</strong>
+            </div>
+            <ul id="carrinho-lista" class="carrinho-lista"></ul>
+            <button type="button" id="btn-finalizar" class="btn-principal" hidden>Finalizar Pedido</button>
+        </section>
+
+        <!-- Grid de Produtos -->
+        <div id="lista-produtos" class="grid-consulta"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 AgroBio - Tecnologia em Sementes e Bioinsumos</p>
+    </footer>
+</body>
+</html>

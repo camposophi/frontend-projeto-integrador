@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    
+
+    <title>AgriTech - Sementes Modificadas e Insumos Biológicos</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <span class="logo">AgriTech</span>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="./pages/consulta/consulta.html">Carrinho</a></li>
+                <li><a href="./pages/cliente/cliente.html">Cadastro Cliente</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SEÇÃO PARALLAX 1 (TOPO) -->
+        <section class="parallax parallax-1">
+            <div class="parallax-texto">
+                <h1>Biotecnologia no Campo</h1>
+                <p>Sementes geneticamente otimizadas e insumos biológicos para alta produtividade.</p>
+            </div>
+        </section>
+
+        <!-- BLOCO DE CONTEÚDO INTERMEDIÁRIO -->
+        <section class="conteudo">
+            <h2>Inovação Agrícola Sustentável</h2>
+            <p>
+                Desenvolvemos cultivares resistentes ao estresse hídrico e bioinsumos que regeneram 
+                a microbiota do solo, reduzindo o uso de defensivos químicos na lavoura.
+            </p>
+        </section>
+
+        <!-- SEÇÃO PARALLAX 2 (MEIO) -->
+        <section class="parallax parallax-2">
+            <div class="parallax-texto">
+                <h2>Genética de Precisão &amp; Microbioma</h2>
+                <p>Mais rendimento por hectare com equilíbrio ambiental.</p>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DO CARROSSEL -->
+        <section class="conteudo">
+            <h2>Destaques da Loja</h2>
+
+            <div class="carrossel" id="carrossel">
+                <button type="button" class="btn-carrossel prev" id="btn-prev" aria-label="Anterior">&#10094;</button>
+
+                <div class="carrossel-track" id="carrossel-track">
+                    <article class="slide ativo">
+                        <img src="./img/Semente de Milho BT ao Amanhecer.png" alt="Semente de Milho BT ao Amanhecer">
+                        <h3>Semente de Milho BT</h3>
+                        <p>Resistente a pragas e seca</p>
+                        <p class="preco-card">R$ 450,00</p>
+                        <span class="tag">Sementes Modificadas</span>
+                    </article>
+
+                    <article class="slide">
+                        <img src="./img/Sementes de Soja RR em Destaque.jpg" alt="Sementes de Soja RR em Destaque">
+                        <h3>Semente de Soja RR</h3>
+                        <p>Tolerante a herbicidas</p>
+                        <p class="preco-card">R$ 380,00</p>
+                        <span class="tag">Sementes Modificadas</span>
+                    </article>
+
+                    <article class="slide">
+                        <img src="./img/semente-algodao.jpg" alt="Sementes de algodão">
+                        <h3>Semente de Algodão Bollgard III</h3>
+                        <p>Tripla proteção contra pragas lepidópteras e fibra de alta resistência</p>
+                        <p class="preco-card">R$ 620,00</p>
+                        <span class="tag">Sementes Modificadas</span>
+                    </article>
+
+                    <article class="slide">
+                        <img src="./img/biofertilizante.jpg" alt="Biofertilizante NPK Vivo">
+                        <h3>Biofertilizante NPK Vivo</h3>
+                        <p>Acelerador de absorção de nutrientes</p>
+                        <p class="preco-card">R$ 120,00</p>
+                        <span class="tag">Insumos Biologicos</span>
+                    </article>
+
+                    <article class="slide">
+                        <img src="./img/Biofungicida-Trichoderma.jpg" alt="Biofungicida Trichoderma Plus 5L">
+                        <h3>Biofungicida Trichoderma Plus 5L</h3>
+                        <p>Controle biológico preventivo contra fungos de solo</p>
+                        <p class="preco-card">R$ 245,00</p>
+                        <span class="tag">Insumos Biologicos</span>
+                    </article>
+
+                    <article class="slide">
+                        <img src="./img/inoculante.jpg" alt="Inoculante Bradyrhizobium Líquido 10L">
+                        <h3>Inoculante Bradyrhizobium Líquido 10L</h3>
+                        <p>Fixador biológico de nitrogênio para sementes de soja</p>
+                        <p class="preco-card">R$ 132,00</p>
+                        <span class="tag">Insumos Biologicos</span>
+                    </article>
+                </div>
+
+                <button type="button" class="btn-carrossel next" id="btn-next" aria-label="Próximo">&#10095;</button>
+            </div>
+
+            <div class="indicadores" id="indicadores"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 AgriTech - Tecnologia em Sementes e Bioinsumos</p>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>

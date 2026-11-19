@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../style.css">
+    <script src="../../app.js" defer></script>
+
+    <title>Forma de Pagamento - AgroBio</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <span class="logo">AgroBio</span>
+            <ul>
+                <li><a href="../../index.html">Início</a></li>
+                <li><a href="../consulta/consulta.html">Carrinho</a></li>
+                <li><a href="../cliente/cliente.html">Cadastro Cliente</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="conteudo">
+        <h2>Forma de Pagamento</h2>
+        <p>Revise seu pedido e escolha como deseja pagar.</p>
+
+        <div class="grid-pagamento" id="area-pagamento">
+            <!-- Coluna 1: Dados do Cliente e Resumo -->
+            <div class="card-pagamento">
+                <h3>1. Dados do Cliente</h3>
+                <div id="info-cliente-pagamento" class="box-info-cliente"></div>
+
+                <hr class="divisor">
+
+                <h3>2. Resumo do Pedido</h3>
+                <ul id="resumo-itens-pagamento" class="lista-resumo-pagamento"></ul>
+                <div class="total-pagamento">
+                    <span>Total a Pagar:</span>
+                    <strong id="total-final-pagamento">R$ 0,00</strong>
+                </div>
+            </div>
+
+            <!-- Coluna 2: Opções de Pagamento -->
+            <form id="form-pagamento" class="card-pagamento">
+                <h3>3. Selecione a Forma de Pagamento</h3>
+
+                <label class="opcao-pagamento">
+                    <input type="radio" name="metodo_pagamento" value="PIX" checked>
+                    <div>
+                        <strong>PIX (Aprovação Imediata)</strong>
+                        <small>Chave CNPJ: 12.345.678/0001-99 • Liberação rápida para envio</small>
+                    </div>
+                </label>
+
+                <label class="opcao-pagamento">
+                    <input type="radio" name="metodo_pagamento" value="Cartão de Crédito">
+                    <div>
+                        <strong>Cartão de Crédito</strong>
+                        <small>Parcele em até 6x sem juros</small>
+                    </div>
+                </label>
+
+                <div id="campos-cartao" class="campos-cartao" hidden>
+                    <div class="campo">
+                        <label for="num-cartao">Número do Cartão</label>
+                        <input type="text" id="num-cartao" placeholder="0000 0000 0000 0000" maxlength="19">
+                    </div>
+                    <div class="campo-duplo">
+                        <div class="campo">
+                            <label for="validade-cartao">Validade</label>
+                            <input type="text" id="validade-cartao" placeholder="MM/AA" maxlength="5">
+                        </div>
+                        <div class="campo">
+                            <label for="cvv-cartao">CVV</label>
+                            <input type="text" id="cvv-cartao" placeholder="123" maxlength="4">
+                        </div>
+                    </div>
+                </div>
+
+                <label class="opcao-pagamento">
+                    <input type="radio" name="metodo_pagamento" value="Boleto Bancário / Safra">
+                    <div>
+                        <strong>Boleto Bancário / Faturamento Rural</strong>
+                        <small>Vencimento em 30 dias após emissão da Nota Fiscal</small>
+                    </div>
+                </label>
+
+                <button type="submit" class="btn-principal" style="margin-top: 1rem;">Confirmar Pagamento</button>
+            </form>
+        </div>
+
+        <!-- Confirmação do Pedido -->
+        <div id="pedido-confirmado" class="box-sucesso-pedido" hidden>
+            <h3>Pedido Confirmado com Sucesso!</h3>
+            <p id="detalhes-pedido-confirmado"></p>
+            <a href="../../index.html" class="btn-principal" style="display: inline-block; width: auto; padding: 0.8rem 2rem; margin-top: 1rem; text-decoration: none;">Voltar ao Início</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 AgroBio - Tecnologia em Sementes e Bioinsumos</p>
+    </footer>
+</body>
+</html>
