@@ -211,7 +211,6 @@ if (listaContainer) {
         });
     }
 
-    // Encaminha para a página de Forma de Pagamento
     if (btnFinalizar) {
         btnFinalizar.addEventListener('click', () => {
             if (obterCarrinho().length === 0) return;
@@ -220,7 +219,6 @@ if (listaContainer) {
     }
 }
 
-/* ================= 4. CADASTRO DO CLIENTE (cliente.html) ================= */
 const formCliente = document.getElementById('form-cliente');
 
 if (formCliente) {
@@ -258,7 +256,6 @@ if (formCliente) {
     });
 }
 
-/* ================= 5. FORMA DE PAGAMENTO (pagamento.html) ================= */
 const areaPagamento = document.getElementById('area-pagamento');
 
 if (areaPagamento) {
