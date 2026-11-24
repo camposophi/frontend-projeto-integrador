@@ -1,3 +1,7 @@
+const API_URL = "http://10.106.102.87:3000";
+const CHAVE_CARRINHO = 'agrobio_carrinho_v5';
+const CHAVE_CLIENTE = 'agrobio_cliente_v1';
+
 const carrossel = document.getElementById('carrossel');
 const slides = document.querySelectorAll('.slide');
 const btnPrev = document.getElementById('btn-prev');
@@ -62,27 +66,26 @@ if (carrossel && slides.length > 0) {
     iniciarAutoPlay();
 }
 
-const CHAVE_CARRINHO = 'agrobio_carrinho_v5';
-const CHAVE_CLIENTE = 'agrobio_cliente_v1';
+const imagensPorId = {
+    1: "Semente de Milho BT ao Amanhecer.png",
+    2: "Sementes de Soja RR em Destaque.jpg",
+    3: "semente-algodao.jpg",
+    4: "Semente de Feijão Carioca Pérola Bio.jpg",
+    5: "Semente de Trigo BRS Reponte.jpg",
+    6: "Semente de Sorgo Granífero AG1090.jpg",
+    7: "Semente de Girassol Alto Oleico.jpg",
+    8: "Semente de Tomate Híbrido Saladete.jpg",
+    9: "biofertilizante.jpg",
+    10: "Biofungicida-Trichoderma.jpg",
+    11: "Bioinseticida Beauveria Bassiana 1kg.jpg",
+    12: "inoculante.jpg",
+    13: "Bioestimulante Enraizador de Algas 5L.jpg",
+    14: "Bionematicida Bacillus Firmus 2L.jpg",
+    15: "Bioinseticida Beauveria Bassiana 1kg.jpg",
+    16: "Solubilizador de Fósforo Biophos 5L.jpg"
+};
 
-const catalogoProdutos = [
-    { id_produto: 1, id_categoria: 1, nome: "Semente de Milho BT ao Amanhecer", descricao: "Resistente a pragas e seca", preco: "450.00", nome_categoria: "Sementes Modificadas", imagem: "Semente de Milho BT ao Amanhecer.png" },
-    { id_produto: 2, id_categoria: 1, nome: "Semente de Soja RR em Destaque", descricao: "Tolerante a herbicidas", preco: "380.00", nome_categoria: "Sementes Modificadas", imagem: "Sementes de Soja RR em Destaque.jpg" },
-    { id_produto: 3, id_categoria: 1, nome: "Semente de Algodão Bollgard III", descricao: "Tripla proteção contra pragas lepidópteras e fibra de alta resistência", preco: "620.00", nome_categoria: "Sementes Modificadas", imagem: "semente-algodao.jpg" },
-    { id_produto: 4, id_categoria: 1, nome: "Semente de Feijão Carioca Pérola Bio", descricao: "Otimizado para tolerância à seca e ciclo precoce de 75 dias", preco: "295.50", nome_categoria: "Sementes Modificadas", imagem: "Semente de Feijão Carioca Pérola Bio.jpg" },
-    { id_produto: 5, id_categoria: 1, nome: "Semente de Trigo BRS Reponte", descricao: "Ciclo médio com alta resistência à ferrugem da folha e giberela", preco: "260.00", nome_categoria: "Sementes Modificadas", imagem: "Semente de Trigo BRS Reponte.jpg" },
-    { id_produto: 6, id_categoria: 1, nome: "Semente de Sorgo Granífero AG1090", descricao: "Adaptado para safrinha com alta tolerância ao estresse hídrico", preco: "198.00", nome_categoria: "Sementes Modificadas", imagem: "Semente de Sorgo Granífero AG1090.jpg" },
-    { id_produto: 7, id_categoria: 1, nome: "Semente de Girassol Alto Oleico", descricao: "Elevado teor de óleo e resistência ao míldio", preco: "340.00", nome_categoria: "Sementes Modificadas", imagem: "Semente de Girassol Alto Oleico.jpg" },
-    { id_produto: 8, id_categoria: 1, nome: "Semente de Tomate Híbrido Saladete", descricao: "Resistente a geminivírus, fusarium e nematóides", preco: "185.00", nome_categoria: "Sementes Modificadas", imagem: "Semente de Tomate Híbrido Saladete.jpg" },
-    { id_produto: 9, id_categoria: 2, nome: "Biofertilizante NPK Vivo", descricao: "Acelerador de absorção de nutrientes", preco: "120.00", nome_categoria: "Insumos Biologicos", imagem: "biofertilizante.jpg" },
-    { id_produto: 10, id_categoria: 2, nome: "Biofungicida Trichoderma Plus 5L", descricao: "Controle biológico preventivo contra fungos de solo", preco: "245.00", nome_categoria: "Insumos Biologicos", imagem: "Biofungicida-Trichoderma.jpg" },
-    { id_produto: 11, id_categoria: 2, nome: "Bioinseticida Beauveria Bassiana 1kg", descricao: "Controle biológico de mosca-branca e cigarrinha-do-milho", preco: "178.90", nome_categoria: "Insumos Biologicos", imagem: "Bioinseticida Beauveria Bassiana 1kg.jpg" },
-    { id_produto: 12, id_categoria: 2, nome: "Inoculante Bradyrhizobium Líquido 10L", descricao: "Fixador biológico de nitrogênio para sementes de soja", preco: "132.00", nome_categoria: "Insumos Biologicos", imagem: "inoculante.jpg" },
-    { id_produto: 13, id_categoria: 2, nome: "Bioestimulante Enraizador de Algas 5L", descricao: "Extrato de Ascophyllum nodosum para arranque inicial", preco: "210.40", nome_categoria: "Insumos Biologicos", imagem: "Bioestimulante Enraizador de Algas 5L.jpg" },
-    { id_produto: 14, id_categoria: 2, nome: "Bionematicida Bacillus Firmus 2L", descricao: "Proteção biológica de raízes contra nematóides", preco: "315.00", nome_categoria: "Insumos Biologicos", imagem: "Bionematicida Bacillus Firmus 2L.jpg" },
-    { id_produto: 15, id_categoria: 2, nome: "Bioinseticida Beauveria Bassiana 1kg", descricao: "Controle biológico de cigarrinha-das-pastagens e percevejos", preco: "165.50", nome_categoria: "Insumos Biologicos", imagem: "Bioinseticida Beauveria Bassiana 1kg.jpg" },
-    { id_produto: 16, id_categoria: 2, nome: "Solubilizador de Fósforo Biophos 5L", descricao: "Disponibiliza fósforo retido no solo para as raízes", preco: "280.00", nome_categoria: "Insumos Biologicos", imagem: "Solubilizador de Fósforo Biophos 5L.jpg" }
-];
+let catalogoProdutos = [];
 
 function formatarMoeda(valor) {
     return parseFloat(valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -104,6 +107,48 @@ const carrinhoLista = document.getElementById('carrinho-lista');
 const carrinhoQtd = document.getElementById('carrinho-qtd');
 const carrinhoTotal = document.getElementById('carrinho-total');
 const btnFinalizar = document.getElementById('btn-finalizar');
+
+function carregarCategorias() {
+    if (!selectCategoria) return;
+
+    fetch(`${API_URL}/categorias`)
+        .then((response) => response.json())
+        .then((categorias) => {
+            console.log('Categorias recebidas da API:', categorias);
+            selectCategoria.innerHTML = '<option value="Todas">Todas as Categorias</option>';
+            categorias.forEach((cat) => {
+                const option = document.createElement('option');
+                option.value = cat.id_categoria;
+                option.textContent = cat.nome || cat.nome_categoria;
+                selectCategoria.appendChild(option);
+            });
+        })
+        .catch((erro) => {
+            console.error('Erro ao buscar categorias:', erro);
+        });
+}
+
+function carregarProdutos() {
+    if (!listaContainer) return;
+
+    listaContainer.innerHTML = '<p>Carregando produtos...</p>';
+
+    fetch(`${API_URL}/produtos`)
+        .then((response) => response.json())
+        .then((produtos) => {
+            console.log('Produtos recebidos da API:', produtos);
+            catalogoProdutos = produtos.map((item) => ({
+                ...item,
+                nome_categoria: item.nome_categoria || 'Categoria',
+                imagem: item.imagem || imagensPorId[item.id_produto] || ''
+            }));
+            renderizarProdutos();
+        })
+        .catch((erro) => {
+            console.error('Erro ao buscar produtos:', erro);
+            listaContainer.innerHTML = '<p>Não foi possível conectar ao servidor para carregar os produtos.</p>';
+        });
+}
 
 function renderizarCarrinho() {
     if (!carrinhoLista) return;
@@ -146,8 +191,8 @@ function renderizarProdutos() {
         const bateCategoria = categoriaSelecionada === 'Todas' || String(item.id_categoria) === categoriaSelecionada;
         const bateTexto =
             item.nome.toLowerCase().includes(termo) ||
-            item.descricao.toLowerCase().includes(termo) ||
-            item.nome_categoria.toLowerCase().includes(termo);
+            (item.descricao && item.descricao.toLowerCase().includes(termo)) ||
+            (item.nome_categoria && item.nome_categoria.toLowerCase().includes(termo));
 
         return bateCategoria && bateTexto;
     });
@@ -162,10 +207,10 @@ function renderizarProdutos() {
             (item) => `
             <article class="card-produto">
                 <div>
-                    ${item.imagem ? `${item.imagem ? `<img src="../../img/${item.imagem.replace(/^(\.\/)?img\//, '')}" alt="${item.nome}" onerror="this.style.display='none'">` : ''}` : ''}
+                    ${item.imagem ? `<img src="../../img/${item.imagem.replace(/^(\.\/)?img\//, '')}" alt="${item.nome}" onerror="this.style.display='none'">` : ''}
                     <span class="tag">${item.nome_categoria}</span>
                     <h3>${item.nome}</h3>
-                    <p>${item.descricao}</p>
+                    <p>${item.descricao || ''}</p>
                 </div>
                 <div>
                     <div class="preco-card">${formatarMoeda(item.preco)}</div>
@@ -178,13 +223,13 @@ function renderizarProdutos() {
 }
 
 if (listaContainer) {
-    renderizarProdutos();
+    carregarCategorias();
+    carregarProdutos();
     renderizarCarrinho();
 
     if (inputBusca) inputBusca.addEventListener('input', renderizarProdutos);
     if (selectCategoria) selectCategoria.addEventListener('change', renderizarProdutos);
 
-    // Adiciona o item selecionado ao carrinho
     listaContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('btn-comprar')) {
             const id = Number(event.target.dataset.id);
@@ -198,7 +243,6 @@ if (listaContainer) {
         }
     });
 
-    // Remove item da lista do carrinho
     if (carrinhoLista) {
         carrinhoLista.addEventListener('click', (event) => {
             if (event.target.classList.contains('btn-remover-item')) {
@@ -246,13 +290,26 @@ if (formCliente) {
             cep: document.getElementById('cliente-cep').value.trim()
         };
 
-        localStorage.setItem(CHAVE_CLIENTE, JSON.stringify(dadosCliente));
+        fetch(`${API_URL}/clientes`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dadosCliente)
+        })
+            .then((response) => response.json())
+            .then((clienteCriado) => {
+                console.log('Cliente cadastrado na API:', clienteCriado);
+                localStorage.setItem(CHAVE_CLIENTE, JSON.stringify({ ...dadosCliente, ...clienteCriado }));
 
-        const msg = document.getElementById('msg-cliente-sucesso');
-        if (msg) {
-            msg.hidden = false;
-            setTimeout(() => (msg.hidden = true), 3000);
-        }
+                const msg = document.getElementById('msg-cliente-sucesso');
+                if (msg) {
+                    msg.hidden = false;
+                    setTimeout(() => (msg.hidden = true), 3000);
+                }
+            })
+            .catch((erro) => {
+                console.error('Erro ao cadastrar cliente:', erro);
+                alert('Erro ao salvar cliente no servidor.');
+            });
     });
 }
 
@@ -315,18 +372,42 @@ if (areaPagamento) {
         }
 
         const metodoEscolhido = document.querySelector('input[name="metodo_pagamento"]:checked').value;
-        const numeroPedido = Math.floor(100000 + Math.random() * 900000);
 
-        areaPagamento.hidden = true;
-        const boxSucesso = document.getElementById('pedido-confirmado');
-        const detalhesEl = document.getElementById('detalhes-pedido-confirmado');
+        const dadosPedido = {
+            id_cliente: clienteAtual.id_cliente || null,
+            forma_pagamento: metodoEscolhido,
+            valor_total: totalPedido,
+            itens: carrinho.map((item) => ({
+                id_produto: item.id_produto,
+                preco: item.preco
+            }))
+        };
 
-        detalhesEl.innerHTML = `
-            Pedido <strong>#${numeroPedido}</strong> registrado para <strong>${clienteAtual.nome}</strong>.<br>
-            Forma de pagamento: <strong>${metodoEscolhido}</strong> • Valor: <strong>${formatarMoeda(totalPedido)}</strong>.
-        `;
-        boxSucesso.hidden = false;
+        fetch(`${API_URL}/pedidos`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dadosPedido)
+        })
+            .then((response) => response.json())
+            .then((pedidoCriado) => {
+                console.log('Pedido registrado na API:', pedidoCriado);
+                const numeroPedido = pedidoCriado.id_pedido || Math.floor(100000 + Math.random() * 900000);
 
-        salvarCarrinho([]);
+                areaPagamento.hidden = true;
+                const boxSucesso = document.getElementById('pedido-confirmado');
+                const detalhesEl = document.getElementById('detalhes-pedido-confirmado');
+
+                detalhesEl.innerHTML = `
+                    Pedido <strong>#${numeroPedido}</strong> registrado para <strong>${clienteAtual.nome}</strong>.<br>
+                    Forma de pagamento: <strong>${metodoEscolhido}</strong> • Valor: <strong>${formatarMoeda(totalPedido)}</strong>.
+                `;
+                boxSucesso.hidden = false;
+
+                salvarCarrinho([]);
+            })
+            .catch((erro) => {
+                console.error('Erro ao registrar pedido:', erro);
+                alert('Erro ao confirmar pedido no servidor.');
+            });
     });
 }
