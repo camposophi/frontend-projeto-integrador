@@ -1,4 +1,3 @@
-/* ================= 1. CARROSSEL DA PÁGINA INICIAL ================= */
 const carrossel = document.getElementById('carrossel');
 const slides = document.querySelectorAll('.slide');
 const btnPrev = document.getElementById('btn-prev');
@@ -63,7 +62,6 @@ if (carrossel && slides.length > 0) {
     iniciarAutoPlay();
 }
 
-/* ================= 2. CATÁLOGO DE PRODUTOS E STORAGE ================= */
 const CHAVE_CARRINHO = 'agrobio_carrinho_v5';
 const CHAVE_CLIENTE = 'agrobio_cliente_v1';
 
