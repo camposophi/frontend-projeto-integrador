@@ -1,4 +1,4 @@
-const API_URL = "http://10.106.102.87:3000";
+const API_URL = "http://10.106.102.100:3000";
 const CHAVE_CARRINHO = 'agritech_carrinho_v5';
 const CHAVE_CLIENTE = 'agritech_cliente_v1';
 
