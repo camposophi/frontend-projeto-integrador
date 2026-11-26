@@ -411,3 +411,136 @@ if (areaPagamento) {
             });
     });
 }
+const formAdmin = document.getElementById('form-admin-produto');
+
+if (formAdmin) {
+    const tituloForm = document.getElementById('titulo-form-admin');
+    const inputId = document.getElementById('admin-id-produto');
+    const inputNome = document.getElementById('admin-nome');
+    const selectCat = document.getElementById('admin-categoria');
+    const inputPreco = document.getElementById('admin-preco');
+    const inputDesc = document.getElementById('admin-descricao');
+    const inputImg = document.getElementById('admin-imagem');
+    const btnSalvar = document.getElementById('btn-salvar-admin');
+    const btnCancelar = document.getElementById('btn-cancelar-edicao');
+    const msgAdmin = document.getElementById('msg-admin-sucesso');
+    const tabelaAdmin = document.getElementById('tabela-produtos-admin');
+
+    let listaProdutosAdmin = [];
+
+    function carregarCategoriasAdmin() {
+        fetch(`${API_URL}/categorias`)
+            .then((response) => response.json())
+            .then((categorias) => {
+                selectCat.innerHTML = '';
+                categorias.forEach((cat) => {
+                    const option = document.createElement('option');
+                    option.value = cat.id_categoria;
+                    option.textContent = cat.nome || cat.nome_categoria;
+                    selectCat.appendChild(option);
+                });
+            })
+            .catch((erro) => console.error('Erro ao carregar categorias:', erro));
+    }
+
+    function carregarTabelaAdmin() {
+        fetch(`${API_URL}/produtos`)
+            .then((response) => response.json())
+            .then((produtos) => {
+                listaProdutosAdmin = produtos;
+                tabelaAdmin.innerHTML = produtos
+                    .map(
+                        (item) => `
+                        <tr>
+                            <td>#${item.id_produto}</td>
+                            <td><strong>${item.nome}</strong><br><small style="color:#64748b;">${item.descricao || ''}</small></td>
+                            <td>${item.nome_categoria || item.id_categoria}</td>
+                            <td>${formatarMoeda(item.preco)}</td>
+                            <td>
+                                <button type="button" class="btn-editar-admin" data-id="${item.id_produto}">Editar</button>
+                            </td>
+                        </tr>
+                    `
+                    )
+                    .join('');
+            })
+            .catch((erro) => {
+                console.error('Erro ao listar produtos:', erro);
+                tabelaAdmin.innerHTML = '<tr><td colspan="5">Erro ao conectar com o servidor.</td></tr>';
+            });
+    }
+
+    function resetarFormularioAdmin() {
+        formAdmin.reset();
+        inputId.value = '';
+        tituloForm.textContent = 'Cadastrar Novo Produto';
+        btnSalvar.textContent = 'Cadastrar Produto';
+        btnCancelar.hidden = true;
+    }
+
+    function mostrarMensagemAdmin(texto) {
+        msgAdmin.textContent = texto;
+        msgAdmin.hidden = false;
+        setTimeout(() => (msgAdmin.hidden = true), 3500);
+    }
+
+    // Preenche o formulário ao clicar em "Editar" na tabela
+    tabelaAdmin.addEventListener('click', (event) => {
+        if (event.target.classList.contains('btn-editar-admin')) {
+            const id = Number(event.target.dataset.id);
+            const produto = listaProdutosAdmin.find((p) => p.id_produto === id);
+            if (!produto) return;
+
+            inputId.value = produto.id_produto;
+            inputNome.value = produto.nome;
+            selectCat.value = produto.id_categoria;
+            inputPreco.value = produto.preco;
+            inputDesc.value = produto.descricao || '';
+            inputImg.value = produto.imagem || imagensPorId[produto.id_produto] || '';
+
+            tituloForm.textContent = `Editando Produto #${produto.id_produto}`;
+            btnSalvar.textContent = 'Salvar Alterações';
+            btnCancelar.hidden = false;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+
+    btnCancelar.addEventListener('click', resetarFormularioAdmin);
+
+    // Envia cadastro novo (POST) ou atualização (PUT)
+    formAdmin.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const idEdicao = inputId.value;
+        const dadosProduto = {
+            id_categoria: Number(selectCat.value),
+            nome: inputNome.value.trim(),
+            descricao: inputDesc.value.trim(),
+            preco: parseFloat(inputPreco.value).toFixed(2),
+            imagem: inputImg.value.trim()
+        };
+
+        const url = idEdicao ? `${API_URL}/produtos/${idEdicao}` : `${API_URL}/produtos`;
+        const metodo = idEdicao ? 'PUT' : 'POST';
+
+        fetch(url, {
+            method: metodo,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dadosProduto)
+        })
+            .then((response) => response.json())
+            .then((resposta) => {
+                console.log('Resposta do servidor:', resposta);
+                mostrarMensagemAdmin(idEdicao ? 'Produto atualizado com sucesso!' : 'Produto cadastrado com sucesso!');
+                resetarFormularioAdmin();
+                carregarTabelaAdmin();
+            })
+            .catch((erro) => {
+                console.error('Erro ao salvar produto:', erro);
+                alert('Erro ao salvar produto no servidor.');
+            });
+    });
+
+    carregarCategoriasAdmin();
+    carregarTabelaAdmin();
+}
